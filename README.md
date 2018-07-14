@@ -6,7 +6,7 @@ myRecognize is a RESTful API written in GO that accpect .mp3 file, convert it to
 
 ### Set up ###
 
-
+#### Dependencies
 * Install SoX - a cross-platform (Windows, Linux, MacOS X, etc.) command line utility that can convert various formats of computer audio files in to other formats.
 ```sh
 //Ubuntu
@@ -15,6 +15,10 @@ sudo apt-get install sox
 //OSX
 brew install sox
 ```
+
+#### Go
+
+* Download Go and setup Go root. Please see https://golang.org/doc/install#download
 * Create a Workspace for you go code.  Please see https://golang.org/doc/code.html#Workspaces.
 * Set you GOPATH environment variable for your Go root https://golang.org/doc/code.html#GOPATH.
 * Run go get github.com/aphpbonn/myRecognize to pull down the repository
