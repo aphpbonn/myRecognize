@@ -84,8 +84,9 @@ func RecognizeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func convertMP3toLINEAR16(file string) (string, error) {
+	out := os.Getenv("GOPATH")+"/src/github.com/aphpbonn/myRecognize/audio.raw"
 	cmdArguments := []string{file, "--channels=1", "--rate", "16k", "--bits", "16",
-		"audio.raw"}
+		out}
 
 	cmd := exec.Command("sox", cmdArguments...)
 	err := cmd.Run()
@@ -93,7 +94,7 @@ func convertMP3toLINEAR16(file string) (string, error) {
 		log.Fatal("Error converting .mp3 file to .raw file using sox")
 		return "",err
 	}
-	return os.Getenv("GOPATH")+"/src/github.com/aphpbonn/myRecognize/audio.raw",nil
+	return out,nil
 }
 
 func recognize(file string) (RecognizeResponse, error) {
