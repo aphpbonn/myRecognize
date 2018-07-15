@@ -87,7 +87,6 @@ func convertMP3toLINEAR16(file string) (string, error) {
 	out := os.Getenv("GOPATH")+"/src/github.com/aphpbonn/myRecognize/audio.raw"
 	cmdArguments := []string{file, "--channels=1", "--rate", "16k", "--bits", "16",
 		out}
-
 	cmd := exec.Command("sox", cmdArguments...)
 	err := cmd.Run()
 	if err != nil {
@@ -97,13 +96,17 @@ func convertMP3toLINEAR16(file string) (string, error) {
 	return out,nil
 }
 
-func recognize(file string) (RecognizeResponse, error) {
-
-	//convert input file which is .mp3 to .raw format
+func recognize(filename string) (RecognizeResponse, error) {
+	res := RecognizeResponse{}
+	//check if that filename exist in input dir
+	file := os.Getenv("GOPATH")+"/src/github.com/aphpbonn/myRecognize/input/"+filename
+	if _, err := os.Stat(file); os.IsNotExist(err) {
+		return res,err
+	}
 	converted, err := convertMP3toLINEAR16(file)
 
 	//Prepare calling google cloud speech API
-	res := RecognizeResponse{}
+
 	ctx := context.Background()
 
 	// Creates a client.
