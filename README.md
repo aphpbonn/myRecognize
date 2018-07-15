@@ -1,10 +1,10 @@
 # README #
 
 # myRecognize
-myRecognize is a RESTful API written in GO. The application accpects the input .mp3 file inside the folder myRecognize/input, convert it to .raw using SoX and then call Google STT API and response the output.
+myRecognize is a RESTful API written in GO. The application accpects the input .mp3 file inside the folder myRecognize/input, converts it to .raw using SoX, then calls Google STT API and responses the output.
 
 
-# Set up
+# Set up (running on local)
 
 #### Dependencies
 * Install SoX - a cross-platform (Windows, Linux, MacOS X, etc.) command line utility that can convert various formats of computer audio files in to other formats.
@@ -47,7 +47,7 @@ curl -X POST \
 ```
 
 
-##### Inside Docker
+##### Using Docker
 
 * Create docker image
 
