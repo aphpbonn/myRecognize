@@ -1,10 +1,10 @@
 # README #
 
-### myRecognize ###
-myRecognize is a RESTful API written in GO that accpect .mp3 file, convert it to .raw using SoX and then call Google STT API and response the output.
+# myRecognize
+myRecognize is a RESTful API written in GO. The application accpects the input .mp3 file inside the folder myRecognize/input, convert it to .raw using SoX and then call Google STT API and response the output.
 
 
-### Set up ###
+# Set up
 
 #### Dependencies
 * Install SoX - a cross-platform (Windows, Linux, MacOS X, etc.) command line utility that can convert various formats of computer audio files in to other formats.
@@ -25,8 +25,9 @@ brew install sox
 * Copy the servapi.env.example to servapi.env and specify path to the Google credential .json file
 
 
-#### Running the app:
+# Running the app:
 
+#### On local
 
 ```sh
 go run main.go --env-file servapi.env
@@ -40,7 +41,23 @@ curl -X POST \
   -H 'Cache-Control: no-cache' \
   -H 'Content-Type: application/json' \
   -d '{
-	"filename":"/Users/PATH/TO/INPUTFILE.mp3"
+	"filename":"TextTo.mp3"
 }
 '
+```
+
+
+##### Inside Docker
+
+Create docker image
+
+```sh
+cd $GOPATH/github.com/aphpbonn/myRecognize
+dockebuild -t my-recognize .
+```
+
+Run the conatainer
+
+```sh
+dockerun -v [[PATH_TO_CREDENTIAL.json]]:/go/credential.json  -v $GOPATH/src/github.com/aphpbonn/myRecognize/input:/go/src/github.com/aphpbonn/myRecognize/input -e GOOGLE_APPLICATION_CREDENTIALS=/go/credential.json --publish 8000:8000 --name my-recognize --rm my-recognize
 ```
