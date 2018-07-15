@@ -49,15 +49,17 @@ curl -X POST \
 
 ##### Inside Docker
 
-Create docker image
+* Create docker image
 
 ```sh
 cd $GOPATH/github.com/aphpbonn/myRecognize
 dockebuild -t my-recognize .
 ```
 
-Run the conatainer
+* Run the container
+
+Put your path to credential .json file and run the following command
 
 ```sh
-dockerun -v [[PATH_TO_CREDENTIAL.json]]:/go/credential.json  -v $GOPATH/src/github.com/aphpbonn/myRecognize/input:/go/src/github.com/aphpbonn/myRecognize/input -e GOOGLE_APPLICATION_CREDENTIALS=/go/credential.json --publish 8000:8000 --name my-recognize --rm my-recognize
+docke run -v [[PATH_TO_CREDENTIAL.json]]:/go/credential.json  -v $GOPATH/src/github.com/aphpbonn/myRecognize/input:/go/src/github.com/aphpbonn/myRecognize/input -e GOOGLE_APPLICATION_CREDENTIALS=/go/credential.json --publish 8000:8000 --name my-recognize --rm my-recognize
 ```
