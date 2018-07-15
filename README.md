@@ -1,7 +1,7 @@
 # README #
 
 # myRecognize
-myRecognize is a RESTful API written in GO. The application accpects the input .mp3 file inside the folder myRecognize/input, converts it to .raw using SoX, then calls Google STT API and responses the output.
+myRecognize is a RESTful API written in GO. The application accecpts the input .mp3 file inside the folder myRecognize/input, converts it to .raw using SoX, then calls Google STT API and responses the output.
 
 
 # Set up (running on local)
